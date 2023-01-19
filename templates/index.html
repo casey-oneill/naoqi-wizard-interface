@@ -1,5 +1,64 @@
 {% extends 'layout.html' %}
 
 {% block content %}
-	<p class="h1">Hello, wizard!</p>
+<div class="row gx-5 p-4">
+	<div class="col-8">
+		<div class="card">
+			<div class="card-header">
+				<ul class="nav nav-tabs card-header-tabs" id="dialogue-tab">
+					<li class="nav-item">
+						<a href="#intro" class="nav-link active" data-bs-toggle="tab">
+							<h2>INTRO</h2>
+						</a>
+					</li>
+					<li class="nav-item">
+						<a href="#qone" class="nav-link" data-bs-toggle="tab">
+							<h2>Q1</h2>
+						</a>
+					</li>
+				</ul>
+			</div>
+			<div class="card-body">
+				<div class="tab-content">
+					<div class="tab-pane fade show active" id="intro">
+						<p>Intro!</p>
+					</div>
+					<div class="tab-pane fade" id="qone">
+						<p>Question one!</p>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="col-4">
+		<div class="row gy-3">
+			<div class="col-12">
+				<h2>COMMON</h2>
+			</div>
+			<div class="col">
+				<button type="button" class="btn btn-light">Common dialogue one.</button>
+			</div>
+			<div class="col">
+				<button type="button" class="btn btn-light">Common dialogue two.</button>
+			</div>
+			<div class="col">
+				<button type="button" class="btn btn-light">Common dialogue three.</button>
+			</div>
+
+			<div class="col-12">
+				<hr class="border border-primary border-3" />
+			</div>
+
+			<div class="col-12">
+				<h2>ACTIONS</h2>
+			</div>
+			<div class="col">
+				<button type="button" class="btn btn-light">Action one</button>
+			</div>
+			<div class="col">
+				<button type="button" class="btn btn-light">Action two</button>
+			</div>
+		</div>
+	</div>
+</div>
 {% endblock %}
