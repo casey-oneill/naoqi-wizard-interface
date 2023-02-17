@@ -4,7 +4,6 @@ from os.path import join, dirname
 
 from dotenv import load_dotenv
 from flask import Flask, Response, request
-# from flask_cors import CORS # Remove on deploy
 
 from nao_proxy_cmd import NaoCommandProxy
 from nao_proxy_qi import NaoqiProxy
@@ -17,21 +16,18 @@ NAO_IP = "192.168.2.251"
 NAO_PORT = 9559
 
 nao = NaoProxy()
-if os.getenv("MODE") == "console":
-    nao = NaoCommandProxy(3)
-else:
+if os.getenv("MODE") == "naoqi":
     nao = NaoqiProxy(NAO_IP, NAO_PORT)
+elif os.getenv("MODE") == "naoqi":
+    nao = NaoCommandProxy(3)
 
 app = Flask(__name__)
-# CORS(app)
 
 @app.route('/', methods=['GET', 'POST'])
 def index():
     return "Hello World!"
 
-@app.route('/say', methods=['POST'])
-def say():
-    print(request.get_json())
-    nao.say(request.get_json().get('str'))
-    
+@app.route('/sayAnimated', methods=['POST'])
+def sayAnimated():
+    nao.sayAnimated(request.get_json().get('str'))    
     return Response()

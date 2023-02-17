@@ -1,8 +1,7 @@
 import React, { useState } from 'react';
-import { Button, Col, Container, Modal, Row, Spinner } from 'react-bootstrap';
+import { Button, ButtonGroup, Col, Container, Modal, Row, Spinner, Stack } from 'react-bootstrap';
+import SayButton from './components/SayButton';
 import data from './data/data';
-
-const HOSTNAME = 'http://127.0.0.1:5000';
 
 const postData = async (url = '', data = {}) => {
   const response = await fetch(url, {
@@ -20,24 +19,61 @@ const postData = async (url = '', data = {}) => {
 const onSay = async (s, setLoading) => {
   const data = { str: s };
   setLoading(true);
-  postData('/say', data).then(() => setLoading(false));
+  postData('/sayAnimated', data).then(() => setLoading(false));
 }
+
+const getDialogueScreen = (dialogueIndex, introductions, clues, setLoading) => {
+  if (dialogueIndex === 0) {
+    // Introductions screen
+    return (
+      <>
+        <h4>Introductions</h4>
+        {introductions[0].map((s) => (
+            <SayButton onSay={() => onSay(s, setLoading)} label={s} />
+        ))}
+      </>
+    );
+  } else {
+    // Clues screen
+    return (
+      <>
+        <h4>{`Clues for Question #${dialogueIndex}`}</h4>
+        {clues[dialogueIndex - 1].map((s) => (
+          <SayButton onSay={() => onSay(s, setLoading)} label={s} />
+        ))}
+      </>
+    );
+  }
+};
 
 const App = () => {
   const [loading, setLoading] = useState(false);
-  const dialogues = data.dialogues[0]; // TODO: Update from character sheet
+  const [dialogueIndex, setDialogueIndex] = useState(0);
+  const { introductions, clues, common: {commonDialogue, commonActions} } = data;
+
+  const nDialogues = clues.length;
 
   return (
     <>
-      <Container>
+      <Container className="p-3">
         <Row>
           <Col>
-            {dialogues.map((s, i) => (
-              <Button variant="primary" onClick={() => onSay(s, setLoading)}>{`Line ${i}`}</Button>
-            ))}
+            <h4>DIALOGUE</h4>
+            <Stack gap={3}>
+              <ButtonGroup>
+                <Button variant="secondary" onClick={() => setDialogueIndex(dialogueIndex - 1)} disabled={dialogueIndex <= 0}>Prev</Button>
+                <Button variant="secondary" onClick={() => setDialogueIndex(dialogueIndex + 1)} disabled={dialogueIndex >= nDialogues}>Next</Button>
+              </ButtonGroup>
+              {getDialogueScreen(dialogueIndex, introductions, clues, setLoading)}
+            </Stack>
           </Col>
           <Col>
-            {data.dialogues.map(i => <h1>{i}</h1>)}
+              <h4>COMMON</h4>
+              <Stack gap={3}>
+                {commonDialogue.map(s => (
+                  <SayButton onSay={() => onSay(s, setLoading)} label={s} />
+                ))}
+              </Stack>
           </Col>
         </Row>
       </Container>
