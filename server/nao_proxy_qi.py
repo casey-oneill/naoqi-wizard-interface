@@ -9,7 +9,7 @@ class NaoqiProxy(NaoProxy):
     # NAO modules
     motion = None
     posture = None
-    autonomous_life = None
+    life = None
     animated_speech = None
     animated_speech_config = {"bodyLanguageMode":"contextual"}
 
@@ -21,16 +21,15 @@ class NaoqiProxy(NaoProxy):
         self.motion = ALProxy("ALMotion", self.nao_ip, self.nao_port)
         self.posture = ALProxy("ALRobotPosture", self.nao_ip, self.nao_port)
         self.animated_speech = ALProxy("ALAnimatedSpeech", self.nao_ip, self.nao_port)
-        self.autonomous_moves = ALProxy("ALAutonomousMoves", self.nao_ip, self.nao_port)
+        self.life = ALProxy("ALAutonomousLife", self.nao_ip, self.nao_port)
 
         # Reset NAO behaviour
         self.motion.wakeUp()
-        time.sleep(0.5)
         self.posture.goToPosture("Sit", 0.5)
-        time.sleep(0.5)
-        self.autonomous_moves.setExpressiveListeningEnabled(True)
+        self.life.setState("solitary")
 
     def __del__(self):
+        self.life.setState("disabled")
         self.motion.rest()
 
     def sayAnimated(self, s):
