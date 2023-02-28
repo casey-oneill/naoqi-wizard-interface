@@ -9,12 +9,18 @@ class NaoCommandProxy(NaoProxy):
         self.delay = delay
         self.prefix = prefix
 
-    def say(self, s):
+    def sayAnimated(self, s):
         time.sleep(self.delay)
         print("{} {}".format(self.prefix, s))
 
     def stand(self):
+        time.sleep(self.delay)
         print("{} Standing...".format(self.prefix))
 
     def sit(self):
+        time.sleep(self.delay)
         print("{} Sitting...".format(self.prefix))
+
+    def fakeError(self):
+        time.sleep(self.delay)
+        print("{} Faking error...").format(self.prefix)

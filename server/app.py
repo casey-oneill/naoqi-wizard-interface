@@ -12,14 +12,14 @@ from nao_proxy import NaoProxy
 dotenv_path = join(dirname(__file__), '.env')
 load_dotenv(dotenv_path)
 
-NAO_IP = "192.168.2.251"
-NAO_PORT = 9559
+NAO_IP = os.getenv("NAO_IP")
+NAO_PORT = os.getenv("NAO_PORT")
 
 nao = NaoProxy()
 if os.getenv("MODE") == "naoqi":
     nao = NaoqiProxy(NAO_IP, NAO_PORT)
-elif os.getenv("MODE") == "naoqi":
-    nao = NaoCommandProxy(3)
+else:
+    nao = NaoCommandProxy(1.5)
 
 app = Flask(__name__)
 
@@ -30,4 +30,9 @@ def index():
 @app.route('/sayAnimated', methods=['POST'])
 def sayAnimated():
     nao.sayAnimated(request.get_json().get('str'))    
+    return Response()
+
+@app.route('/fakeError', methods=['GET'])
+def fakeError():
+    nao.fakeError()
     return Response()

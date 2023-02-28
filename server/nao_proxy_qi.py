@@ -1,5 +1,3 @@
-import time
-
 from naoqi import ALProxy
 from nao_proxy import NaoProxy
 
@@ -40,3 +38,7 @@ class NaoqiProxy(NaoProxy):
 
     def sit(self):
         self.posture.goToPosture("Sit", 0.5)
+    
+    def fakeError(self):
+        # TODO: Implement
+        pass
