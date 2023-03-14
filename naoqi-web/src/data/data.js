@@ -2,16 +2,28 @@ import { ACTION, ACTIONS, DIALOGUE } from '../constants';
 
 const introductions = [
 	[
-		"Hello! My name is NAO. I am a social robot created by the SoftBank Robotics company.",
-		"I have not been used in any research studies yet. In fact, you are the first person I will be completing a task with!",
-		"The team here at the University of New Brunswick has made sure that I am functioning in optimal condition for this study.",
-		"I am here to help you complete your scavenger hunt.",
+		"Hello, my name is NAO. I am a social robot here at the lab.",
+		"I have been learning about the website by practicing other scavenger hunts.",
+		"Let me tell you about myself. I have been used in research studies for more than five years.",
+		"Let me tell you about the most exciting thing that has happened to me. One time, a participant in a study was struggling to complete their task. Luckily, I saw what needed to be done and I was able to help them through it!",
+		"You can ask me questions as your work through your scavenger hunt. I will do my best to answer, but I cannot understand all questions.",
+		"I am excited to help you work through the scavenger hunt.",
 	],
 	[
-		"Hello! My name is NAO. I am a social robot created by the SoftBank Robotics company.",
-		"I have been used in many different research studies.",
-		"The team here at the University of New Brunswick has made sure that I am functioning in optimal condition for this study.",
-		"I am here to help you complete your scavenger hunt.",
+		"Hello, my name is NAO. I am a social robot here at the lab.",
+		"I have been learning about the website by practicing other scavenger hunts.",
+		"Let me tell you about myself. I arrived at the lab last semester. This is the first study that I will be used in!",
+		"Let me tell you about the most exciting thing that has happened to me. I was purchased from the SoftBank Robotics company and arrived that the University of New Brunswick. Now, I am completing my first research study!",
+		"You can ask me questions as your work through your scavenger hunt. I will do my best to answer, but I cannot understand all questions.",
+		"I am excited to complete my first research study.",
+	],
+	[
+		"Hello, my name is NAO. I am a social robot here at the lab.",
+		"I have been learning about the website by practicing other scavenger hunts.",
+		"Let me tell you about myself. I have been used in a few research studies over the years.",
+		"Let me tell you about the most exciting thing that has happened to me. One time, my programmers powered me on, but I looked unresponsive. They thought that I was broken. Isn’t that funny? They were so worried!",
+		"You can ask me questions as your work through your scavenger hunt. I will do my best to answer, but I cannot understand all questions.",
+		"I am excited to see how you do.",
 	],
 ];
 
@@ -27,8 +39,8 @@ const data = {
 			title: "Question 1",
 			type: DIALOGUE,
 			value: [
-				"This is my first clue for the first question.",
-				"This is my second clue for the first question.",
+				"A café is a “Food Service”.",
+				"This information is listed with the “Locations and Hours” of “Food Services”.",
 			],
 		},
 		// Question 2 clues
@@ -36,8 +48,8 @@ const data = {
 			title: "Question 2",
 			type: DIALOGUE,
 			value: [
-				"This is my first clue for the second question.",
-				"This question is too difficult!",
+				"This project explores the ideas of philosophers Aristotle and Rawls.",
+				"This project is hosted by the “Waterloo Institute for Complexity and Innovation”.",
 			],
 		},
 		// Question 3 clues
@@ -45,8 +57,8 @@ const data = {
 			title: "Question 3",
 			type: DIALOGUE,
 			value: [
-				"This is my first clue for the third question.",
-				"This is my second clue for the third question.",
+				"This seems like a fact “About Waterloo”.",
+				"This question is too difficult. I don't have another clue for you.",
 			],
 		},
 		// Question 4 clues
@@ -54,8 +66,8 @@ const data = {
 			title: "Question 4",
 			type: DIALOGUE,
 			value: [
-				"This is my first clue for the fourth question.",
-				"This is my second clue for the fourth question.",
+				"The “Molecular Beam Epitaxy Research Group” is part of the “Waterloo Institute for Nanotechnology”.",
+				"The “Nanotechnology Engineering” department is part of the “Science” department. ",
 			],
 		},
 		// Fake error event
@@ -69,8 +81,8 @@ const data = {
 			title: "Question 5",
 			type: DIALOGUE,
 			value: [
-				"This is my first clue for the fifth question.",
-				"This is my second clue for the fifth question.",
+				"A human-computer interaction researcher would study interaction techniques.",
+				"Emily Carr was a Canadian artist. Emily Carr Universtiy is a fine arts school. This person has a background in visual art.",
 			],
 		},
 	],
@@ -83,7 +95,9 @@ const data = {
 			"Could you repeat that?",
 			"I see.",
 			"Ok.",
-			"I didn't know that.",
+			"Hey! I have a clue for this question.",
+			"Hey! Can I offer my thoughts on this question?",
+			"I can't answer that.",
 			"Bye!",
 		],
 	},

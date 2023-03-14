@@ -47,37 +47,37 @@ const doAction = async (action, setLoading) => {
 };
 
 const getDialogueScreen = (dialogueIndex, clues, setLoading) => {
-    const clue = clues[dialogueIndex];
-    var value = null;
-    switch (clue.type) {
-      case DIALOGUE:
-        value = (
-          clue.value.map((s, i) => (
-            <SayButton onSay={() => onSay(s, setLoading)} label={s} key={`key_${i}`} />
-          ))
-        );
-        break;
-      case ACTION:
-        value = (
-          <ActionButton doAction={() => doAction(clue.value, setLoading)} label={clue.title} />
-        );
-        break;
-      default:
-        break;
-    };
+  const clue = clues[dialogueIndex];
+  var value = null;
+  switch (clue.type) {
+    case DIALOGUE:
+      value = (
+        clue.value.map((s, i) => (
+          <SayButton onSay={() => onSay(s, setLoading)} label={s} key={`key_${i}`} />
+        ))
+      );
+      break;
+    case ACTION:
+      value = (
+        <ActionButton doAction={() => doAction(clue.value, setLoading)} label={clue.title} />
+      );
+      break;
+    default:
+      break;
+  };
 
-    return (
-      <>
-        <h4>{clue.title}</h4>
-        {value}
-      </>
-    );
+  return (
+    <>
+      <h4>{clue.title}</h4>
+      {value}
+    </>
+  );
 };
 
 const App = () => {
   const [loading, setLoading] = useState(false);
   const [dialogueIndex, setDialogueIndex] = useState(0);
-  const { clues, common: {commonDialogue} } = data;
+  const { clues, common: { commonDialogue } } = data;
 
   const nDialogues = clues.length;
 
@@ -86,21 +86,22 @@ const App = () => {
       <Container className="p-3">
         <Row>
           <Col>
+            <h4>SCRIPTS</h4>
             <Stack gap={3}>
               <ButtonGroup>
-                <Button variant="secondary" onClick={() => setDialogueIndex(dialogueIndex - 1)} disabled={dialogueIndex <= 0}>Prev</Button>
-                <Button variant="secondary" onClick={() => setDialogueIndex(dialogueIndex + 1)} disabled={dialogueIndex >= nDialogues - 1}>Next</Button>
+                <Button variant="primary" onClick={() => setDialogueIndex(dialogueIndex - 1)} disabled={dialogueIndex <= 0}>Prev</Button>
+                <Button variant="primary" onClick={() => setDialogueIndex(dialogueIndex + 1)} disabled={dialogueIndex >= nDialogues - 1}>Next</Button>
               </ButtonGroup>
               {getDialogueScreen(dialogueIndex, clues, setLoading)}
             </Stack>
           </Col>
           <Col>
-              <h4>COMMON</h4>
-              <Stack gap={3}>
-                {commonDialogue.map((s, i) => (
-                  <SayButton onSay={() => onSay(s, setLoading)} label={s} key={`key_${i}`} />
-                ))}
-              </Stack>
+            <h4>COMMON</h4>
+            <Stack gap={3}>
+              {commonDialogue.map((s, i) => (
+                <SayButton onSay={() => onSay(s, setLoading)} label={s} key={`key_${i}`} />
+              ))}
+            </Stack>
           </Col>
         </Row>
       </Container>
