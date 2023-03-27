@@ -24,6 +24,7 @@ class ReactToTouch(ALModule):
 
         # Create a proxies for later use
         self.animatedSpeech = ALProxy("ALAnimatedSpeech")
+        self.leds = ALProxy("ALLeds")
         self.life = ALProxy("ALAutonomousLife")
         self.motion = ALProxy("ALMotion")
         self.posture = ALProxy("ALRobotPosture")
@@ -52,11 +53,9 @@ class ReactToTouch(ALModule):
         # Unsubscribe to the event when talking, to avoid repetitions
         memory.unsubscribeToEvent("MiddleTactilTouched", "ReactToTouch")
 
-        # global version
-        # for s in introductions[version]:
-        #     self.say(s)
-
-        self.say("Hello I am NAO.")
+        global version
+        for s in introductions[version]:
+            self.say(s)
 
         # Subscribe again to the event
         memory.subscribeToEvent("MiddleTactilTouched", "ReactToTouch", "onMiddleTactilTouched")
@@ -67,7 +66,11 @@ class ReactToTouch(ALModule):
         """
         # Unsubscribe to the event when talking, to avoid repetitions
         memory.unsubscribeToEvent("HandLeftBackTouched", "ReactToTouch")
-        self.say("My name is NAO.")
+
+        self.say("Okay. Let's start the scavenger hunt. Please wait while I load your scavenger hunt data.")
+        self.leds.rasta(20)
+        self.say("Data loaded. Are you ready to begin your scavenger hunt?")
+        
         # Subscribe again to the event
         memory.subscribeToEvent("HandLeftBackTouched", "ReactToTouch", "onHandLeftBackTouched")
 
