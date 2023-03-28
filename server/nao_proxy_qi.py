@@ -57,7 +57,7 @@ class NaoqiProxy(NaoProxy):
     
     def fakeError(self):
         self.leds.rasta(5)
-        self.animated_speech.say("\\rspd=90\\\\vct=90\\\\vol=85\\Here is the", self.animated_speech_config)
+        self.animated_speech.say("\\rspd=85\\\\vct=90\\\\vol=85\\Here is the", self.animated_speech_config)
         self.animated_speech.say("\\rspd=60\\\\vct=45\\\\vol=85\\next\\pau=50\\", self.animated_speech_config)
         self.animated_speech.say("\\rspd=30\\\\vct=20\\\\vol=85\\question\\pau=75\\", self.animated_speech_config)
         self.animated_speech.say("\\rspd=10\\\\vct=5\\\\vol=90\\question\\pau=75\\", self.animated_speech_config)

@@ -67,7 +67,7 @@ class ReactToTouch(ALModule):
         # Unsubscribe to the event when talking, to avoid repetitions
         memory.unsubscribeToEvent("HandLeftBackTouched", "ReactToTouch")
 
-        self.say("Okay. Let's start the scavenger hunt. Please wait while I load your scavenger hunt data.")
+        self.say("Okay. Let's start the scavenger hunt. Please wait while I load your game's data.")
         self.leds.rasta(20)
         self.say("Data loaded. Are you ready to begin your scavenger hunt?")
         
