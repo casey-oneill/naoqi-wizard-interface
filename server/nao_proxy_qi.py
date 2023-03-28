@@ -47,7 +47,7 @@ class NaoqiProxy(NaoProxy):
             self.broker.shutdown()
 
     def sayAnimated(self, s):
-        self.animated_speech.say("\\rspd=85\\\\vct=90\\\\vol=80\\{}".format(s), self.animated_speech_config)
+        self.animated_speech.say("\\rspd=80\\\\vct=100\\\\vol=80\\{}".format(s), self.animated_speech_config)
 
     def stand(self):
         self.posture.goToPosture("Stand", 0.5)
@@ -56,13 +56,13 @@ class NaoqiProxy(NaoProxy):
         self.posture.goToPosture("Sit", 0.5)
     
     def fakeError(self):
-        self.leds.rasta(5)
         self.animated_speech.say("\\rspd=85\\\\vct=90\\\\vol=85\\Here is the", self.animated_speech_config)
         self.animated_speech.say("\\rspd=60\\\\vct=45\\\\vol=85\\next\\pau=50\\", self.animated_speech_config)
         self.animated_speech.say("\\rspd=30\\\\vct=20\\\\vol=85\\question\\pau=75\\", self.animated_speech_config)
         self.animated_speech.say("\\rspd=10\\\\vct=5\\\\vol=90\\question\\pau=75\\", self.animated_speech_config)
         self.animated_speech.say("\\rspd=5\\\\vct=5\\\\vol=90\\question", self.animated_speech_config)
-        self.animated_speech.say("\\rspd=5\\\\vct=5\\\\vol=90\\I\\\pau=100\\I\\\pau=100\\I\\\pau=100\\", self.animated_speech_config)
+        self.animated_speech.say("\\rspd=5\\\\vct=5\\\\vol=90\\I\\pau=100\\I\\pau=100\\I\\pau=100\\", self.animated_speech_config)
         self.motion.rest()
-        time.sleep(3)
+        self.leds.rasta(5)
         self.motion.wakeUp()
+        self.sayAnimated("Whoops! What happened? Let's continue.")
