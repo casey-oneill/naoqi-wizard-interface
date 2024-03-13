@@ -14,11 +14,10 @@ load_dotenv(dotenv_path)
 
 NAO_IP = os.getenv("NAO_IP")
 NAO_PORT = int(os.getenv("NAO_PORT"))
-NAO_VERSION = int(os.getenv("NAO_VERSION"))
 
 nao = NaoProxy()
 if os.getenv("MODE") == "naoqi":
-    nao = NaoqiProxy(NAO_IP, NAO_PORT, NAO_VERSION)
+    nao = NaoqiProxy(NAO_IP, NAO_PORT, 0)
 else:
     nao = NaoCommandProxy(1.5)
 

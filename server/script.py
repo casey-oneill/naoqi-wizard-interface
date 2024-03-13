@@ -11,7 +11,6 @@ import argparse
 # Global variable to store the ReactToTouch module instance
 ReactToTouch = None
 memory = None
-version = 3
 
 class ReactToTouch(ALModule):
     """ A simple module able to react to touch events.
@@ -54,8 +53,7 @@ class ReactToTouch(ALModule):
         memory.unsubscribeToEvent("MiddleTactilTouched", "ReactToTouch")
 
         global version
-        for s in introductions[version]:
-            self.say(s)
+        self.say("You touched the top of my head!")
 
         # Subscribe again to the event
         memory.subscribeToEvent("MiddleTactilTouched", "ReactToTouch", "onMiddleTactilTouched")
@@ -67,8 +65,7 @@ class ReactToTouch(ALModule):
         # Unsubscribe to the event when talking, to avoid repetitions
         memory.unsubscribeToEvent("HandLeftBackTouched", "ReactToTouch")
 
-        self.say("Okay. Let's start the scavenger hunt. Please wait while I load your game's data.")
-        self.leds.rasta(10)
+        self.say("You touched the back of my hand!")
         
         # Subscribe again to the event
         memory.subscribeToEvent("HandLeftBackTouched", "ReactToTouch", "onHandLeftBackTouched")
